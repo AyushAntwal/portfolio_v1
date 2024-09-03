@@ -50,7 +50,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="overflow-y-auto h-full scroll-smooth">
+      <div className="overflow-y-auto h-full md:scroll-smooth">
         <div id="section1" className="h-full section bg-slate-900"></div>
         <div id="section2" className="h-full section bg-gray-500"></div>
         <div id="section3" className="h-full section bg-gray-900"></div>
