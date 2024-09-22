@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
   --bg-color-1: #ffffff;
   --bg-color-2: #33333372;
@@ -16,7 +15,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom , var(--bg-color-1), var(--bg-color-2));
+  background: linear-gradient(to bottom, var(--bg-color-1), var(--bg-color-2));
 }
 
 @layer utilities {
@@ -25,7 +24,94 @@ body {
   }
 }
 
-.scroll-indicators p a.active {
-  color: black;
-  font-size: larger;
+/* Normal scroll indicators */
+.scroll-indicators {
+  @apply flex;
+}
+
+.scroll-indicators a{
+  @apply uppercase flex flex-col font-semibold text-sm text-teal-500 ;
+}
+.scroll-indicators a .i-border {
+  @apply border border-teal-500 w-1/2 h-0;
+}
+
+/* Active scroll indicators */
+.scroll-indicators.active a {
+  @apply text-teal-300; /* text-teal-300 equivalent */
+}
+
+.scroll-indicators.active .i-border {
+  @apply border-teal-300 w-full; /* border-teal-300 equivalent */
+}
+
+
+.scroll-indicators .divider {
+  transition: width 0.3s;
+  width: 2rem;
+  border-top: 1px solid white;
+}
+.scroll-indicators:hover .divider {
+  width: 3rem;
+  border-top: 1px solid white;
+}
+
+.scroll-indicators.active .divider {
+  width: 3rem;
+  border-top: 1px solid white;
+}
+
+p {
+  @apply text-lg text-slate-200;
+}
+a {
+  @apply text-blue-500 font-medium text-slate-200 hover:text-teal-300 focus-visible:text-teal-300;
+}
+
+.slide-into {
+  animation: slideInto 1s forwards;
+}
+@keyframes slideInto {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  75% {
+    transform: translateY(20px);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-into-view {
+  animation: slideIntoView 1s forwards;
+  animation-timeline: view(block 70% 0%);
+}
+
+
+
+@keyframes slideIntoView {
+  from {
+    visibility: hidden;
+    transform: translateX(50%);
+  }
+  80% {
+    transform: translateX(50%);
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+
+.hide-scrollbar{
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
